@@ -2,19 +2,17 @@
 from calculator_adapter import run
 
 
-import subprocess
-
-def test_addition():
-    result = subprocess.run(["./calculator", "1", "+", "1"], capture_output=True, text=True)
-    assert "2" in result.stdout
-
-def test_multiplication():
-    result = subprocess.run(["./calculator", "2", "+", "2"], capture_output=True, text=True)
-    assert "4" in result.stdout
-
 
 ### ADD AT LEAST TWO TESTS HERE!
 
+# Checks that the program outputs "3" for an input of "1 + 2"
+assert run("1 + 1").output == "2"
+# Checks that the program outputs "8" for an input of "2 * 4"
+assert run("2 * 2").output == "4"
+# Checks that the program exists successfully (no error) for input "2 * 4"
+assert run("2 * 2").exit_status == 0
+# Checks that the program fails (correctly errors) for input "2 @ 3"
+assert run("2 @ 3").exit_status != 0
 
 ###
 
